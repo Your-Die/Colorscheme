@@ -1,0 +1,18 @@
+{
+    "name": "Chinchillada.Colorscheme.PCG.Graph",
+    "references": [
+        "GUID:fdde8d8e10a113d46a633b97e1a260ea",
+        "GUID:8172ca02c1ad6d64b8c6a304f93c8c26",
+        "GUID:0c2104d497adab84e844c7d64cae9cfe",
+        "GUID:b6dae9efd2786034dbec8c63d0b02226"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
