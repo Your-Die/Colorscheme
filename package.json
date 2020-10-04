@@ -2,12 +2,12 @@
   "name": "com.chinchillada.colorschemes",
   "version": "1.0.0",
   "displayName": "Chinchillada Colorschemes",
-  "description": "",
   "unity": "2020.1",
   "unityRelease": "6f1",
   "dependencies": {
-  "com.chinchillada.foundation" : "1.0.0",
-  "com.chinchillada.distributions" : "1.0.0" 
+    "com.chinchillada.foundation": "1.0.0",
+    "com.chinchillada.distributions": "1.0.0",
+    "com.github.siccity.xnode": "1.8.0"
   },
   "keywords": [],
   "author": {

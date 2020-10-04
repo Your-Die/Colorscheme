@@ -2,7 +2,8 @@
     "name": "Chinchillada.Colorscheme",
     "references": [
         "GUID:1eaec2d7d70f722408cb2417d51f1005",
-        "GUID:c03f40f865ece494193d07c65510bbd0"
+        "GUID:c03f40f865ece494193d07c65510bbd0",
+        "GUID:1b6375c38e60f984c9c35e7bf8f4056e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
