@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using XNode;
 
-namespace Chinchillada.GeneratorGraph.ColorSchemes
+namespace Generators.ColorSchemes
 
 {
     public class ColorschemeSaver : Node

@@ -2,7 +2,7 @@
 using Chinchillada.Colorscheme;
 using UnityEngine;
 
-namespace Chinchillada.GeneratorGraph.ColorSchemes
+namespace Generators.ColorSchemes
 
 {
     public class DistributedSchemeNode : ColorschemeGeneratorNode

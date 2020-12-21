@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Chinchillada.GeneratorGraph.ColorSchemes
+namespace Generators.ColorSchemes
 {
     public abstract class ColorschemeGeneratorNode : GeneratorNode<ColorScheme>
     {

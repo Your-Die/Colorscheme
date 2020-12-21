@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Chinchillada.GeneratorGraph.ColorSchemes
+namespace Generators.ColorSchemes
 
 {
     public class MonochromeSchemeNode : ColorschemeGeneratorNode
