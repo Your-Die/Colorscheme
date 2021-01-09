@@ -8,7 +8,7 @@ namespace Chinchillada.Colorscheme
 
     public class ColorSchemeGeneratorHook : ChinchilladaBehaviour
     {
-        [SerializeField, FindComponent] private IIterativeGenerator<IColorScheme> generator;
+        [SerializeField, FindComponent] private IAsyncGenerator<IColorScheme> generator;
 
         [SerializeField] private List<IColorschemeUser> users = new List<IColorschemeUser>();
 
