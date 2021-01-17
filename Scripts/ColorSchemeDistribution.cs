@@ -21,14 +21,14 @@ namespace Chinchillada.Colorscheme
             }
         }
 
-        int IDistribution<int>.Sample()
+        int IDistribution<int>.Sample(IRNG random)
         {
-            return this.distribution.Sample();
+            return this.distribution.Sample(random);
         }
 
-        Color IDistribution<Color>.Sample()
+        Color IDistribution<Color>.Sample(IRNG random)
         {
-            var index = this.distribution.Sample();
+            var index = this.distribution.Sample(random);
             return this.colorScheme[index];
         }
         

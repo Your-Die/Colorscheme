@@ -15,7 +15,6 @@ namespace Chinchillada.Colorscheme
 
         [SerializeField, MinMaxSlider(0, 1)] private Vector2 saturationRange = new Vector2(1, 1);
 
-
         public ColorScheme Result { get; private set; }
         public event Action<ColorScheme> Generated;
 
@@ -28,21 +27,25 @@ namespace Chinchillada.Colorscheme
             return this.Result;
         }
 
-        public ColorScheme Generate(float hue)
+        public ColorScheme Generate(float hue, IRNG random = null)
         {
-            return GenerateMonochromeScheme(hue, this.colorCount, this.valueRange, this.saturationRange);
+            random ??= new UnityRandom();
+            return GenerateMonochromeScheme(hue, this.colorCount, this.valueRange, this.saturationRange, random);
         }
 
 
-        public static ColorScheme GenerateMonochromeScheme(float hue, int colorCount, Vector2 valueRange,
-            Vector2 saturationRange)
+        public static ColorScheme GenerateMonochromeScheme(float   hue,
+                                                           int     colorCount,
+                                                           Vector2 valueRange,
+                                                           Vector2 saturationRange,
+                                                           IRNG    random)
         {
             var colors = new HSVColor[colorCount];
 
             for (var index = 0; index < colorCount; index++)
             {
-                var saturation = saturationRange.RandomInRange();
-                var value = valueRange.RangeLerp((float) index / colorCount);
+                var saturation = random.Range(saturationRange);
+                var value      = valueRange.RangeLerp((float) index / colorCount);
 
                 colors[index] = new HSVColor
                 {
@@ -55,10 +58,13 @@ namespace Chinchillada.Colorscheme
             return new ColorScheme(colors);
         }
 
-        public static ColorScheme GenerateMonochromeScheme(int colorCount, Vector2 valueRange, Vector2 saturationRange)
+        public static ColorScheme GenerateMonochromeScheme(int colorCount, Vector2 valueRange, Vector2 saturationRange,
+                                                           IRNG random = null)
         {
-            var hue = HSVColor.RandomHue();
-            return GenerateMonochromeScheme(hue, colorCount, valueRange, saturationRange);
+            random ??= UnityRandom.Shared;
+
+            var hue = HSVColor.RandomHue(random);
+            return GenerateMonochromeScheme(hue, colorCount, valueRange, saturationRange, random);
         }
     }
 }

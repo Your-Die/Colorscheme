@@ -31,6 +31,10 @@ namespace Chinchillada.Colorscheme
 
         public Color ToRGB() => Color.HSVToRGB(this.hue, this.saturation, this.value);
 
-        public static float RandomHue() => Random.value;
+        public static float RandomHue(IRNG random = null)
+        {
+            random ??= new UnityRandom();
+            return random.Float();
+        }
     }
 }
