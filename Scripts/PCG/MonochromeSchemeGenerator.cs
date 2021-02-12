@@ -7,24 +7,18 @@ using UnityEngine;
 namespace Chinchillada.Colorscheme
 {
     [Serializable]
-    public class MonochromeSchemeGenerator : IGenerator<ColorScheme>
+    public class MonochromeSchemeGenerator : GeneratorBase<ColorScheme>
     {
         [SerializeField] private int colorCount = 3;
 
-        [SerializeField, MinMaxSlider(0, 1)] private Vector2 valueRange = new Vector2(0, 1);
+        [SerializeField][MinMaxSlider(0, 1)] private Vector2 valueRange = new Vector2(0, 1);
 
-        [SerializeField, MinMaxSlider(0, 1)] private Vector2 saturationRange = new Vector2(1, 1);
+        [SerializeField][MinMaxSlider(0, 1)] private Vector2 saturationRange = new Vector2(1, 1);
 
-        public ColorScheme Result { get; private set; }
-        public event Action<ColorScheme> Generated;
-
-        public ColorScheme Generate()
+        protected override ColorScheme GenerateInternal()
         {
             var hue = HSVColor.RandomHue();
-            this.Result = this.Generate(hue);
-
-            this.Generated?.Invoke(this.Result);
-            return this.Result;
+            return this.Generate(hue);
         }
 
         public ColorScheme Generate(float hue, IRNG random = null)
@@ -49,16 +43,16 @@ namespace Chinchillada.Colorscheme
 
                 colors[index] = new HSVColor
                 {
-                    Hue = hue,
+                    Hue        = hue,
                     Saturation = saturation,
-                    Value = value
+                    Value      = value
                 };
             }
 
             return new ColorScheme(colors);
         }
 
-        public static ColorScheme GenerateMonochromeScheme(int colorCount, Vector2 valueRange, Vector2 saturationRange,
+        public static ColorScheme GenerateMonochromeScheme(int  colorCount, Vector2 valueRange, Vector2 saturationRange,
                                                            IRNG random = null)
         {
             random ??= UnityRandom.Shared;
