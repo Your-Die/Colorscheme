@@ -7,9 +7,9 @@ namespace Chinchillada.Colorscheme
 {
     public class ColorschemeManager : SingleInstanceBehaviour<ColorschemeManager>, IColorScheme, IColorschemeUser
     {
-        [SerializeField] private IColorScheme colorScheme;
+        [SerializeField] private ColorScheme colorScheme;
         
-        public IColorScheme ColorScheme
+        public ColorScheme ColorScheme
         {
             get => colorScheme;
             set => colorScheme = value;
@@ -18,12 +18,6 @@ namespace Chinchillada.Colorscheme
         public int Count => this.colorScheme.Count;
 
         public Color this[int index] => this.colorScheme[index];
-
-        public IColorScheme Scheme
-        {
-            get => this.colorScheme;
-            set => this.colorScheme = value;
-        }
 
         public IEnumerator<Color> GetEnumerator() => this.colorScheme.GetEnumerator();
 

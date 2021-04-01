@@ -1,7 +1,6 @@
 using System;
 using Chinchillada.Generation;
 using Chinchillada.Foundation;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Chinchillada.Colorscheme
@@ -11,9 +10,7 @@ namespace Chinchillada.Colorscheme
     {
         [SerializeField] private int colorCount = 3;
 
-        [SerializeField][MinMaxSlider(0, 1)] private Vector2 valueRange = new Vector2(0, 1);
-
-        [SerializeField][MinMaxSlider(0, 1)] private Vector2 saturationRange = new Vector2(1, 1);
+        [SerializeField] private ColorGenerator colorGenerator;
 
         protected override ColorScheme GenerateInternal()
         {
@@ -24,41 +21,20 @@ namespace Chinchillada.Colorscheme
         public ColorScheme Generate(float hue, IRNG random = null)
         {
             random ??= new UnityRandom();
-            return GenerateMonochromeScheme(hue, this.colorCount, this.valueRange, this.saturationRange, random);
+            return this.GenerateMonochromeScheme(hue, random);
         }
 
-
-        public static ColorScheme GenerateMonochromeScheme(float   hue,
-                                                           int     colorCount,
-                                                           Vector2 valueRange,
-                                                           Vector2 saturationRange,
-                                                           IRNG    random)
+        public ColorScheme GenerateMonochromeScheme(float hue, IRNG random)
         {
-            var colors = new HSVColor[colorCount];
+            var colors = new HSVColor[this.colorCount];
 
-            for (var index = 0; index < colorCount; index++)
+            for (var index = 0; index < this.colorCount; index++)
             {
-                var saturation = random.Range(saturationRange);
-                var value      = valueRange.RangeLerp((float) index / colorCount);
-
-                colors[index] = new HSVColor
-                {
-                    Hue        = hue,
-                    Saturation = saturation,
-                    Value      = value
-                };
+                var value = this.colorGenerator.ValueRange.RangeLerp((float) index / this.colorCount);
+                colors[index] = this.colorGenerator.Generate(hue, value, random);
             }
 
             return new ColorScheme(colors);
-        }
-
-        public static ColorScheme GenerateMonochromeScheme(int  colorCount, Vector2 valueRange, Vector2 saturationRange,
-                                                           IRNG random = null)
-        {
-            random ??= UnityRandom.Shared;
-
-            var hue = HSVColor.RandomHue(random);
-            return GenerateMonochromeScheme(hue, colorCount, valueRange, saturationRange, random);
         }
     }
 }

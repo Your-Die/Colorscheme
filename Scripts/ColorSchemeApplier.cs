@@ -11,9 +11,9 @@ namespace Chinchillada.Colorscheme
         [SerializeField, FindComponent] private Renderer rendererComponent;
 
         [SerializeField, FindComponent(SearchStrategy.InParent)]
-        private IColorScheme scheme;
+        private ColorScheme scheme;
         
-        public IColorScheme ColorScheme
+        public ColorScheme ColorScheme
         {
             get => scheme;
             set

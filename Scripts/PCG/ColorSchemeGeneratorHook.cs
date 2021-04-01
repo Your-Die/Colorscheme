@@ -8,52 +8,50 @@ namespace Chinchillada.Colorscheme
 
     public class ColorSchemeGeneratorHook : ChinchilladaBehaviour
     {
-        [SerializeField, FindComponent] private IAsyncGenerator<IColorScheme> generator;
+        [SerializeField, FindComponent] private IGenerator<ColorScheme> generator;
 
         [SerializeField] private List<IColorschemeUser> users = new List<IColorschemeUser>();
 
-        public void Register(IColorschemeUser user) => users.Add(user);
+        public void Register(IColorschemeUser user) => this.users.Add(user);
 
-        public void Deregister(IColorschemeUser user) => users.Remove(user);
+        public void Deregister(IColorschemeUser user) => this.users.Remove(user);
 
         private void CleanUsers()
         {
-            for (var i = users.Count - 1; i >= 0; i--)
+            for (var i = this.users.Count - 1; i >= 0; i--)
             {
-                if (users[i] != null)
+                if (this.users[i] != null)
                     continue;
 
-                var lastIndex = users.Count - 1;
+                var lastIndex = this.users.Count - 1;
 
-                users[i] = users[lastIndex];
-                users.RemoveAt(lastIndex);
+                this.users[i] = this.users[lastIndex];
+                this.users.RemoveAt(lastIndex);
             }
         }
 
         private void FindUsers()
         {
-            var newUsers = GetComponentsInChildren<IColorschemeUser>();
+            var newUsers = this.GetComponentsInChildren<IColorschemeUser>();
             foreach (var user in newUsers)
             {
-                if (!users.Contains(user)) 
-                    users.Add(user);
+                if (!this.users.Contains(user)) this.users.Add(user);
             }
         }
 
         private void OnEnable()
         {
-            CleanUsers();
-            FindUsers();
+            this.CleanUsers();
+            this.FindUsers();
 
-            if (generator != null)
-                generator.Generated += UpdateColorScheme;
+            if (this.generator != null) this.generator.Generated += this.UpdateColorScheme;
         }
 
-        private void OnDisable() => generator.Generated -= UpdateColorScheme;
+        private void OnDisable() => this.generator.Generated -= this.UpdateColorScheme;
 
-        private void UpdateColorScheme(IColorScheme colorScheme)
+        private void UpdateColorScheme(ColorScheme colorScheme)
         {
-            foreach (var user in users.Where(user => user != null))
+            foreach (var user in this.users.Where(user => user != null))
                 user.ColorScheme = colorScheme;
         }
     }

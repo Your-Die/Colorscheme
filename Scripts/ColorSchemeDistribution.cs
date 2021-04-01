@@ -7,11 +7,11 @@ namespace Chinchillada.Colorscheme
 {
     public class ColorSchemeDistribution : SerializedMonoBehaviour, IDistribution<int>, IDistribution<Color>, IColorschemeUser
     {
-        [SerializeField] private IColorScheme colorScheme;
+        [SerializeField] private ColorScheme colorScheme;
 
         private IDistribution<int> distribution;
 
-        public IColorScheme ColorScheme
+        public ColorScheme ColorScheme
         {
             get => colorScheme;
             set
