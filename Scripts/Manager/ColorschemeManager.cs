@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Chinchillada.Foundation;
 using UnityEngine;
 
 namespace Chinchillada.Colorscheme

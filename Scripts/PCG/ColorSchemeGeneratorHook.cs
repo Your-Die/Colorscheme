@@ -2,9 +2,7 @@ namespace Chinchillada.Colorscheme
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Generation;
     using UnityEngine;
-    using Foundation;
 
     public class ColorSchemeGeneratorHook : ChinchilladaBehaviour
     {
